@@ -1,0 +1,32 @@
+@use "/src/styles/mixins.scss" as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 6px;
+  background: var(--primary-grey);
+  color: var(--primary-white);
+
+  @include mobile {
+    max-width: 320px;
+    width: 100%;
+    position: sticky;
+    bottom: 20px;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.text {
+  font-size: var(--button-font-size-sm);
+  line-height: 150%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

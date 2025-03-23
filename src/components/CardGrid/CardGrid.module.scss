@@ -1,0 +1,16 @@
+@use "/src/styles/mixins.scss" as *;
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px 12px;
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
