@@ -1,2 +1,24 @@
+@use "./mixins.scss" as *;
+
 :root {
+  --max-width: 1048px;
+  --background-color: #171923;
+  --primary-white: #ffffff;
+  --primary-black: #000000;
+  --primary-grey: #2d3748;
+  --icon-background-rgb: 0, 0, 0;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 16px;
+  --font-size-xl: 32px;
+
+  --button-font-size-sm: 14px;
+}
+
+@include mobile {
+  :root {
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-xl: 24px;
+  }
 }
