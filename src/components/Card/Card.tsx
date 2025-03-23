@@ -1,25 +1,33 @@
 import styles from "./Card.module.scss";
 import IconLocked from "assets/icons/ic_locked.svg";
 import IconUnlocked from "assets/icons/ic_unlocked.svg";
+import { Gif } from "types/Gif.ts";
+import SkeletonCard from "components/Card/SkeletonCard.tsx";
+import useCard from "hooks/useCard.ts";
 
 interface ComponentProps {
+  data: Gif;
   isLocked?: boolean;
 }
 
-const Card = ({ isLocked = false }: ComponentProps) => {
+const Card = ({ data, isLocked = false }: ComponentProps) => {
+  const { imageLoaded } = useCard(data);
+
+  if (!imageLoaded) return <SkeletonCard />;
+
   return (
     <div className={styles.card}>
       <div className={styles.image}>
         <img
-          src="https://media0.giphy.com/media/v1.Y2lkPTNhNWFjNWI0dDdqbzFsZW00OXpiemY0bmo2dm5ib2hmMnE1a3o4bXo5OWxmaXBsaiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/hZj44bR9FVI3K/giphy.gif"
-          alt="test"
+          src={data.images.fixed_height_small.url}
+          alt={data.title || "GIF"}
         />
         <button className={styles.icon}>
           {isLocked ? <IconLocked /> : <IconUnlocked />}
         </button>
       </div>
-      <p className={styles.date}>2025-03-04</p>
-      <p className={styles.title}>#leisure #ba</p>
+      <p className={styles.date}>{data.import_datetime.split(" ")[0]}</p>
+      <p className={styles.title}>{data.title}</p>
     </div>
   );
 };

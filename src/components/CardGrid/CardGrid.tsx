@@ -1,11 +1,16 @@
 import styles from "./CardGrid.module.scss";
 import Card from "components/Card/Card.tsx";
+import { Gif } from "/types/Gif.ts";
 
-const CardGrid = () => {
+interface ComponentProps {
+  data: Gif[];
+}
+
+const CardGrid = ({ data }: ComponentProps) => {
   return (
     <div className={styles.grid}>
-      {[...Array(12)].map((_, index) => (
-        <Card key={index} />
+      {data.map((gif) => (
+        <Card data={gif} key={gif.id} />
       ))}
     </div>
   );
