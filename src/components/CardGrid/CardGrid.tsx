@@ -9,8 +9,8 @@ interface ComponentProps {
 const CardGrid = ({ data }: ComponentProps) => {
   return (
     <div className={styles.grid}>
-      {data.map((gif) => (
-        <Card data={gif} key={gif.id} />
+      {data.map((gif, index) => (
+        <Card data={gif} key={gif.id} position={index} />
       ))}
     </div>
   );

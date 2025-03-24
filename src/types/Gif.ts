@@ -30,3 +30,7 @@ export interface GifResponse {
     response_id: string;
   };
 }
+
+export interface LockedGif extends Gif {
+  position: number;
+}

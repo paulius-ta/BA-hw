@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { Gif } from "types/Gif.ts";
+import { Gif, LockedGif } from "types/Gif.ts";
 
 export interface GifContextType {
-  lockedGifs: Record<string, Gif>;
-  lockGif: (gif: Gif) => void;
+  lockedGifs: Record<string, LockedGif>;
+  lockGif: (gif: Gif, position: number) => void;
   unlockGif: (gifId: string) => void;
 }
 
