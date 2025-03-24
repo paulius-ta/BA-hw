@@ -5,7 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/ba-hw/",
+  base: "/BA-hw/",
   plugins: [
     tsconfigPaths(),
     react(),
