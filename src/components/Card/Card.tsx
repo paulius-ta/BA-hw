@@ -7,11 +7,10 @@ import useCard from "hooks/useCard.ts";
 
 interface ComponentProps {
   data: Gif;
-  isLocked?: boolean;
 }
 
-const Card = ({ data, isLocked = false }: ComponentProps) => {
-  const { imageLoaded } = useCard(data);
+const Card = ({ data }: ComponentProps) => {
+  const { imageLoaded, isLocked, handleLockToggle } = useCard(data);
 
   if (!imageLoaded) return <SkeletonCard />;
 
@@ -22,7 +21,7 @@ const Card = ({ data, isLocked = false }: ComponentProps) => {
           src={data.images.fixed_height_small.url}
           alt={data.title || "GIF"}
         />
-        <button className={styles.icon}>
+        <button className={styles.icon} onClick={handleLockToggle}>
           {isLocked ? <IconLocked /> : <IconUnlocked />}
         </button>
       </div>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Gif } from "types/Gif.ts";
+import { useGifContext } from "hooks/useGifContext.ts";
 
 const useCard = (data: Gif) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { lockGif, unlockGif, lockedGifs } = useGifContext();
+  const isLocked = Boolean(lockedGifs[data.id]);
 
   useEffect(() => {
     const img = new Image();
@@ -14,8 +17,18 @@ const useCard = (data: Gif) => {
     };
   }, [data.images.fixed_height_small.url]);
 
+  const handleLockToggle = () => {
+    if (isLocked) {
+      unlockGif(data.id);
+    } else {
+      lockGif(data);
+    }
+  };
+
   return {
     imageLoaded,
+    isLocked,
+    handleLockToggle,
   };
 };
 
