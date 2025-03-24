@@ -9,18 +9,22 @@ import SkeletonCardGrid from "components/CardGrid/SkeletonCardGrid.tsx";
 function App() {
   const { data, isLoading, isError, handleClick } = useAppControl();
 
+  const renderContent = () => {
+    if (isError) {
+      return <div>Error loading GIFs</div>;
+    }
+
+    if (isLoading || !data || data.length === 0) {
+      return <SkeletonCardGrid />;
+    }
+
+    return <CardGrid data={data} />;
+  };
+
   return (
     <div className={styles.app}>
       <h1 className={styles.header}>Giphy</h1>
-
-      {(isLoading || !data || (data && data.length === 0)) && (
-        <SkeletonCardGrid />
-      )}
-
-      {isError && <div>Error loading GIFs</div>}
-
-      {data && data.length > 0 && <CardGrid data={data} />}
-
+      {renderContent()}
       <ControlButton onClick={handleClick} />
     </div>
   );
