@@ -39,6 +39,18 @@ const useAppControl = () => {
     setDisplayedGifs(finalGifs);
   }, [fetchedGifs, lockedGifs]);
 
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.code === "Space" && !event.repeat) {
+        event.preventDefault();
+        handleClick();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
   const handleClick = () => {
     setOffset((prevOffset) => prevOffset + LIMIT);
   };
